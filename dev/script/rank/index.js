@@ -6,6 +6,7 @@ export default class {
     constructor($container, total, type) {
         this.$container = $container;
         this.type = type;
+        this.value = 0;
 
         for (let i = 0; i < total; i++) {
             this.$container.append(this.generateDiv());
@@ -24,12 +25,17 @@ export default class {
 
         return $div;
     }
-    changeRank(e, className = 'active') {
+    changeHandler(e, className = 'active') {
         const $this = $(e.currentTarget);
 
         const index = this.$singles.index($this);
         this.$singles.removeClass(className);
 
+        this.changeRank(index, className);
+
+        return index;
+    }
+    changeRank(index, className) {
         this.$singles.each((i, item) => {
             if (i <= index) {
                 $(item).addClass(className);
@@ -39,15 +45,20 @@ export default class {
     eventListener() {
         this.$singles
             .on('mouseover', e => {
-                this.changeRank(e);
+                this.changeHandler(e);
             })
             .on('mouseleave', () => {
                 this.$singles.removeClass('active');
             })
             .on('click', e => {
-                this.changeRank(e, 'selected');
+                this.value = this.changeHandler(e, 'selected') + 1;
+                console.log(this.getValue());
             });
     }
-    getValue() { }
-    setValue() { }
+    getValue() {
+        return this.value;
+    }
+    setValue(rank) {
+        this.changeRank(rank - 1, 'selected');
+    }
 }

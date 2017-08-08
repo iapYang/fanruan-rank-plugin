@@ -8,4 +8,6 @@ const $starContaniner = $('.star-container');
 const $heartContaniner = $('.heart-container');
 
 new Rank($starContaniner, 10, 'star');
-new Rank($heartContaniner, 10, 'heart');
+const heart = new Rank($heartContaniner, 10, 'heart');
+heart.setValue(1);
+
