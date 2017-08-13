@@ -14,7 +14,9 @@
   },
   "scripts": {
     "start": "iapvt dev",
-    "cli": "iapvt cli -r -s"
+    "cli": "iapvt cli -r -s",
+    "build": "iapvt build",
+    "gh": "iapvt gh"
   },
   "repository": {
     "type": "git",
